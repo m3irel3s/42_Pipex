@@ -13,9 +13,6 @@ INIT_DIR    = $(SRC_DIR)/init
 
 
 SRC		=	$(SRC_DIR)/main.c \
-			$(UTILS_DIR)/exit_program.c \
-			$(UTILS_DIR)/free.c \
-			$(INIT_DIR)/init_struct.c \
 
 
 all: $(LIBFT) $(NAME)
