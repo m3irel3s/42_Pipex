@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 12:57:42 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/01/03 14:54:04 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/01/06 15:20:21 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@
 
 typedef struct s_file 
 {
-	char	*file_1;
-	char	*file_2;
-
+	char	*cmd_1;
+	char	*cmd_2;
+	int		fd_1;
+	int		fd_2;
 }	t_file;
 
 //===============================================================//
