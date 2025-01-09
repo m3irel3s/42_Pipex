@@ -6,22 +6,29 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 12:59:26 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/01/06 17:09:10 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/01/09 17:09:13 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "inc/pipex.h"
 
-static char *get_path(char **env, char *cmd);
+static char	*get_path(char **env, char *cmd);
+static char	*add_cmd_to_path(char **arr, char *cmd);
 
 int	main(int argc, char **argv, char **envp)
 {
-	(void)argc;
 	t_pipex *pipex;
-	
-	pipex = malloc(sizeof(t_pipex));
 
-	pipex->cmd_1 = get_path(envp, argv[1]);
+	pipex = init_struct();
+	if (argc == 5)
+	{
+		check_args_and_set(pipex, argv);
+		pipex->cmd_1 = get_path(envp, argv[2]);
+		pipex->cmd_2 = get_path(envp, argv[3]);
+		exit_program(pipex, "success\n", 1);
+	}
+	else
+		exit_program(pipex, "Please provide only 4 arguments\n", 2);
 	return 0;
 }
 
@@ -30,7 +37,8 @@ static char	*get_path(char **env, char *cmd)
 	int		i;
 	char	*path;
 	char	**arr;
-	char	**cmdarr;
+	char	*res;
+
 	i = 0;
 	while (env[i])
 	{
@@ -39,14 +47,28 @@ static char	*get_path(char **env, char *cmd)
 		i++;
 	}
 	arr = ft_split(path, ':');
-	cmdarr = ft_split(cmd, ' ');
-	for (int j = 0; arr[j]; j++)
+	free(path);
+	res = add_cmd_to_path(arr, cmd);
+	return (res);
+}
+
+static char	*add_cmd_to_path(char **arr, char *cmd)
+{
+	char	**cmd_arr;
+	char	*full_path;
+	int		i;
+
+	i = 0;
+	full_path = NULL;
+	cmd_arr = ft_split(cmd, ' ');
+	while (arr[i])
 	{
-		char *temp;
-		arr[j] = ft_strjoin(arr[j], "/");
-		temp = ft_strjoin(arr[j], cmdarr[0]);
-		if (access(temp, X_OK) == 0)
-			return temp;
+		arr[i] = ft_strjoin_gnl(arr[i], "/");
+		full_path = ft_strjoin(arr[i], cmd_arr[0]);
+		if (access(full_path, X_OK) == 0)
+			return(free_arr(arr), free_arr(cmd_arr), full_path);
+		free(full_path);
+		i++;
 	}
-	return 0;
+	return(free_arr(arr), free_arr(cmd_arr), NULL);
 }

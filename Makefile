@@ -8,11 +8,12 @@ LIBFT       = $(LIBFT_DIR)/libft.a
 LIBFT_DIR   = 42_Libft
 INC_DIR     = inc
 SRC_DIR     = src
-UTILS_DIR   = $(SRC_DIR)/utils
-INIT_DIR    = $(SRC_DIR)/init
-
 
 SRC		=	$(SRC_DIR)/main.c \
+			$(SRC_DIR)/init_struct.c \
+			$(SRC_DIR)/utils.c \
+			$(SRC_DIR)/free.c \
+			$(SRC_DIR)/parse.c \
 
 
 all: $(LIBFT) $(NAME)
@@ -40,6 +41,9 @@ get_log:
 	else \
 		tail -f gdb.txt; \
 	fi
+
+val: $(NAME) $(SRC)
+	valgrind $(VARGS) ./$(NAME) infile "ls -l" "wc -l" outfile
 
 clean:
 	rm -f $(NAME) $(NAME_BONUS)

@@ -4,7 +4,6 @@ set print array on
 
 set style enabled on
 
-
 set logging enabled on
 
 define main
@@ -15,11 +14,17 @@ define get_path
 
 end
 
+define add_cmd_to_path
+	disp arr[i]
+	disp cmd_arr[0]
+end
+
 fs cmd
 file pipex
 break main
-break get_path
-run ./pipex "ls -l"
+break add_cmd_to_path
+
+run infile "ls -l" "wc -l" outfile
 
 info break
 info watch
