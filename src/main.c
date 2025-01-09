@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 12:59:26 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/01/09 17:09:13 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/01/09 17:37:14 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static char	*get_path(char **env, char *cmd)
 {
 	int		i;
 	char	*path;
+	char	*full_path;
 	char	**arr;
-	char	*res;
 
 	i = 0;
 	while (env[i])
@@ -48,8 +48,8 @@ static char	*get_path(char **env, char *cmd)
 	}
 	arr = ft_split(path, ':');
 	free(path);
-	res = add_cmd_to_path(arr, cmd);
-	return (res);
+	full_path = add_cmd_to_path(arr, cmd);
+	return (full_path);
 }
 
 static char	*add_cmd_to_path(char **arr, char *cmd)
