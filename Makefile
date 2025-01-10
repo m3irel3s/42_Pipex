@@ -43,7 +43,7 @@ get_log:
 	fi
 
 val: $(NAME) $(SRC)
-	valgrind $(VARGS) ./$(NAME) infile "ls -l" "wc -l" outfile
+	valgrind $(VARGS) ./$(NAME) infile "ls -0" "wc -l" outfile
 
 clean:
 	rm -f $(NAME) $(NAME_BONUS)

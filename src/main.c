@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 12:59:26 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/01/10 11:56:03 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/01/10 12:04:57 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv, char **envp)
 	{
 		check_args_and_set(pipex, argv, envp);
 		handle_child_processes(pipex, envp, argv);
-		exit_program(pipex, "success\n", 1);
+		exit_program(pipex, "", 1);
 	}
 	else
 		exit_program(pipex, "Please provide only 4 arguments\n", 2);
