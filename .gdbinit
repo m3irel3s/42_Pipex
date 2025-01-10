@@ -19,10 +19,15 @@ define add_cmd_to_path
 	disp cmd_arr[0]
 end
 
+define handle_child_processes
+	disp pid_1
+	disp pid_2
+end
+
 fs cmd
 file pipex
 break main
-break add_cmd_to_path
+break handle_child_processes
 
 run infile "ls -l" "wc -l" outfile
 
