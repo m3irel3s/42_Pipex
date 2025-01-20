@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:15:09 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/01/20 14:54:00 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/01/20 15:58:03 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	check_args_and_set(t_pipex *pipex, char **argv, char **envp)
 {
+	pipex->cmd_1 = ft_split(argv[2], ' ');
+	pipex->cmd_2 = ft_split(argv[3], ' ');
 	pipex->path_1 = get_path(pipex, envp, argv[2]);
 	pipex->path_2 = get_path(pipex, envp, argv[3]);
 	pipex->fd_1 = open(argv[1], O_RDONLY, 0777);
@@ -22,8 +24,6 @@ void	check_args_and_set(t_pipex *pipex, char **argv, char **envp)
 	pipex->fd_2 = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (pipex->fd_2 == -1)
 		exit_program(pipex, "Error opening fd_2\n", 2);
-	pipex->cmd_1 = ft_split(argv[2], ' ');
-	pipex->cmd_2 = ft_split(argv[3], ' ');
 }
 
 char	*get_path(t_pipex *pipex, char **env, char *cmd)

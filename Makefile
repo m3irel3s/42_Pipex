@@ -43,7 +43,7 @@ get_log:
 	fi
 
 val: $(NAME) $(SRC)
-	valgrind $(VARGS) ./$(NAME) infile "grep oh" "wc -l" outfile
+	valgrind $(VARGS) ./$(NAME) a "grep oh" "wc -l" outfile
 
 clean:
 	rm -f $(NAME)

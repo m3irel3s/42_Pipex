@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 11:24:33 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/01/20 14:53:02 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/01/20 15:29:34 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ static void	free_struct(t_pipex *pipex)
 {
 	if (pipex)
 	{
-		free_arr(pipex->cmd_1);
-		free_arr(pipex->cmd_2);
+		if (pipex->cmd_1)
+			free_arr(pipex->cmd_1);
+		if (pipex->cmd_2)
+			free_arr(pipex->cmd_2);
 		free(pipex->path_1);
 		free(pipex->path_2);
 		close(pipex->fd_1);

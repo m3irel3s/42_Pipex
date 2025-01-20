@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 12:59:26 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/01/20 14:53:41 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/01/20 17:26:46 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	main(int argc, char **argv, char **envp)
 	t_pipex	*pipex;
 
 	pipex = init_struct();
+	if (!envp[1])
+		return (1);
 	if (argc == 5)
 	{
 		check_args_and_set(pipex, argv, envp);
