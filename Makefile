@@ -43,13 +43,13 @@ get_log:
 	fi
 
 val: $(NAME) $(SRC)
-	valgrind $(VARGS) ./$(NAME) infile "ls -0" "wc -l" outfile
+	valgrind $(VARGS) ./$(NAME) infile "grep oh" "wc -l" outfile
 
 clean:
-	rm -f $(NAME) $(NAME_BONUS)
+	rm -f $(NAME)
 
 fclean: clean
-	rm -f $(NAME) $(NAME_BONUS)
+	rm -f $(NAME)
 	rm -rf $(LIBFT_DIR)
 
 re: fclean all

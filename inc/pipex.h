@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/03 12:57:42 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/01/10 12:00:26 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/01/20 14:54:43 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
 
 typedef struct s_pipex
 {
+	char	**cmd_1;
+	char	**cmd_2;
 	char	*path_1;
 	char	*path_2;
-	char	*cmd_1;
-	char	*cmd_2;
 	int		fd_1;
 	int		fd_2;
 }	t_pipex;
@@ -50,11 +50,10 @@ void	check_args_and_set(t_pipex *pipex, char **argv, char **envp);
 //                             UTILS                             //
 //===============================================================//
 
-void	handle_child_processes(t_pipex *pipex, char **envp, char **argv);
-void	handle_first_child(t_pipex *pipex, char **envp, char **argv, int *pipe_fds);
-void	handle_second_child(t_pipex *pipex, char **envp, char **argv, int *pipe_fds);
+void	handle_child_processes(t_pipex *pipex, char **envp);
+void	handle_first_child(t_pipex *pipex, char **envp, int *fds);
+void	handle_second_child(t_pipex *pipex, char **envp, int *fds);
 void	free_arr(char **arr);
 int		exit_program(t_pipex *pipex, char *str, int fd);
-
 
 #endif

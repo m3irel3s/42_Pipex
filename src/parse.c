@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:15:09 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/01/10 12:04:58 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/01/20 14:54:00 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	check_args_and_set(t_pipex *pipex, char **argv, char **envp)
 	pipex->fd_2 = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (pipex->fd_2 == -1)
 		exit_program(pipex, "Error opening fd_2\n", 2);
+	pipex->cmd_1 = ft_split(argv[2], ' ');
+	pipex->cmd_2 = ft_split(argv[3], ' ');
 }
 
 char	*get_path(t_pipex *pipex, char **env, char *cmd)
@@ -60,9 +62,9 @@ char	*add_cmd_to_path(char **arr, char *cmd)
 		arr[i] = ft_strjoin_gnl(arr[i], "/");
 		full_path = ft_strjoin(arr[i], cmd_arr[0]);
 		if (access(full_path, X_OK) == 0)
-			return(free_arr(arr), free_arr(cmd_arr), full_path);
+			return (free_arr(arr), free_arr(cmd_arr), full_path);
 		free(full_path);
 		i++;
 	}
-	return(free_arr(arr), free_arr(cmd_arr), NULL);
+	return (free_arr(arr), free_arr(cmd_arr), NULL);
 }
