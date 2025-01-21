@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:15:09 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/01/20 17:32:48 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/01/21 11:49:10 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	check_args_and_set(t_pipex *pipex, char **argv, char **envp)
 {
-	pipex->fd_1 = open(argv[1], O_RDONLY, 0777);
+	pipex->fd_1 = open(argv[1], O_RDONLY);
 	if (pipex->fd_1 == -1)
-		exit_program(pipex, "Error opening fd_1\n", 2);
-	pipex->fd_2 = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
+		exit_program(pipex, "Error opening 1st file\n", 2);
+	pipex->fd_2 = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (pipex->fd_2 == -1)
-		exit_program(pipex, "Error opening fd_2\n", 2);
+		exit_program(pipex, "Error opening 2nd file\n", 2);
 	pipex->cmd_1 = ft_split(argv[2], ' ');
 	pipex->cmd_2 = ft_split(argv[3], ' ');
 	pipex->path_1 = get_path(pipex, envp, argv[2]);
@@ -44,7 +44,7 @@ char	*get_path(t_pipex *pipex, char **env, char *cmd)
 	free(path);
 	full_path = add_cmd_to_path(arr, cmd);
 	if (!full_path)
-		exit_program(pipex, "Error adding the full path\n", 2);
+		exit_program(pipex, "Error adding the cmd to path\n", 2);
 	return (full_path);
 }
 
