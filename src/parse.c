@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:15:09 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/01/21 11:49:10 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/01/22 14:41:19 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,15 @@ char	*get_path(t_pipex *pipex, char **env, char *cmd)
 	char	**arr;
 
 	i = 0;
+	path = NULL;
 	while (env[i])
 	{
 		if (ft_strncmp(env[i], "PATH=", 5) == 0)
 			path = ft_strdup(env[i] + 5);
 		i++;
 	}
+	if (!path)
+		return (NULL);
 	arr = ft_split(path, ':');
 	free(path);
 	full_path = add_cmd_to_path(arr, cmd);
