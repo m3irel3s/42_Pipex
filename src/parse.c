@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 14:15:09 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/01/22 14:41:19 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/01/27 11:58:34 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	check_args_and_set(t_pipex *pipex, char **argv, char **envp)
 {
+	pipex->path_1 = get_path(pipex, envp, argv[2]);
+	pipex->path_2 = get_path(pipex, envp, argv[3]);
 	pipex->fd_1 = open(argv[1], O_RDONLY);
 	if (pipex->fd_1 == -1)
 		exit_program(pipex, "Error opening 1st file\n", 2);
@@ -22,8 +24,6 @@ void	check_args_and_set(t_pipex *pipex, char **argv, char **envp)
 		exit_program(pipex, "Error opening 2nd file\n", 2);
 	pipex->cmd_1 = ft_split(argv[2], ' ');
 	pipex->cmd_2 = ft_split(argv[3], ' ');
-	pipex->path_1 = get_path(pipex, envp, argv[2]);
-	pipex->path_2 = get_path(pipex, envp, argv[3]);
 }
 
 char	*get_path(t_pipex *pipex, char **env, char *cmd)
@@ -42,7 +42,7 @@ char	*get_path(t_pipex *pipex, char **env, char *cmd)
 		i++;
 	}
 	if (!path)
-		return (NULL);
+		exit_program(pipex, "No path found\n", 2);
 	arr = ft_split(path, ':');
 	free(path);
 	full_path = add_cmd_to_path(arr, cmd);
