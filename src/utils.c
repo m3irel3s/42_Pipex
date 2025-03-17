@@ -6,7 +6,7 @@
 /*   By: jmeirele <jmeirele@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 11:14:59 by jmeirele          #+#    #+#             */
-/*   Updated: 2025/01/22 14:41:43 by jmeirele         ###   ########.fr       */
+/*   Updated: 2025/01/29 10:58:44 by jmeirele         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	handle_child_processes(t_pipex *pipex, char **envp)
 	if (pipe(fds) == -1)
 		exit_program(pipex, "Error creating communication channel\n", 2);
 	pid_1 = fork();
+	printf("%d\n", pid_1);
 	if (pid_1 == -1)
 		exit_program(pipex, "Error forking 1st child\n", 2);
 	if (pid_1 == 0)
