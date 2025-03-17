@@ -1,4 +1,4 @@
-## **42_Pipex**
+## 🪠 **42_Pipex**
 ## 🔍 Overview
 
 Pipex is a C programming project that focuses on creating a simplified version of the pipe command, similar to how Unix/Linux shells handle pipes. The project challenges you to work with processes, file descriptors, and piping, providing a deeper understanding of inter-process communication. The goal is to implement a program that simulates a pipeline between commands by reading from one command’s output and feeding it as input to another.
